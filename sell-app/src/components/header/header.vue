@@ -127,7 +127,7 @@
           .name
             margin-left: 6px
             font-size: 16px
-            line-hight: 18px
+            line-height: 18px
             font-weight: bold
         .description
           margin-bottom: 10px
@@ -189,7 +189,7 @@
         height: 12px
         bg-image('bulletin')
         background-size: 22px 12px
-        backgrount-repeat: no-repeat
+        background-repeat: no-repeat
       .bulletin-text
         vertical-align: top
         margin: 0 4px
