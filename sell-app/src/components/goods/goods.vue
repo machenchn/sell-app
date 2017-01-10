@@ -38,7 +38,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -129,6 +129,7 @@
         });
       },
       _drop(target) {
+        this.$refs.shopcart.drop(target);
       },
       _calulateHeight() {
         let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
