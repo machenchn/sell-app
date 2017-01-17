@@ -40,7 +40,7 @@
     </div>
     <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
-  <food :food="selectedFood"></food>
+  <food :food="selectedFood" v-ref:food></food>
 </template>
 
 <script type="text/ecmascript-6">
@@ -125,6 +125,7 @@
           return;
         }
         this.selectedFood = food;
+        this.$refs.food.show();
       },
       _initScorll() {
         this.menuScroll = new BScroll(this.$els.menuWrapper, {
