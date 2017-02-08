@@ -59,9 +59,8 @@
   import Vue from 'vue';
   import split from 'components/split/split';
   import ratingselect from 'components/ratingselect/ratingselect';
+  import {formatDate} from 'common/js/data';
 
-  // const POSITIVE = 0;
-  // const NEGATIVE = 1;
   const ALL = 2;
 
   export default {
@@ -106,6 +105,36 @@
         }
         this.$dispatch('cart.add', event.target);
         Vue.set(this.food, 'count', 1);
+      },
+      needShow(type, text) {
+        if (this.onlyContent && !text) {
+          return false;
+        }
+        if (this.selectType === ALL) {
+          return true;
+        } else {
+          return type === this.selectType;
+        }
+      }
+    },
+    event: {
+      'ratingtype.select'(type) {
+        this.selectType = type;
+        this.$nextTick(() => {
+          this.scroll.refresh();
+        });
+      },
+      'content.toggle'(onlyContent) {
+        this.onlyContent = onlyContent;
+        this.$nextTick(() => {
+          this.scroll.refresh();
+        });
+      }
+    },
+    filters: {
+      formatDate(time) {
+        let date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd hh:mm');
       }
     },
     components: {
@@ -152,7 +181,6 @@
           padding: 10px
           font-size: 20px
           color: #fff
-
     .content
       position: relative
       padding: 18px
@@ -262,7 +290,6 @@
               color: rgb(0, 160, 220)
             .icon-thumb_down
               color: rgb(147, 153, 159)
-
         .no-rating
           padding: 16px 0
           font-size: 12px
