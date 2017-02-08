@@ -1,14 +1,14 @@
 <template>
   <div>
     <v-header :seller="seller"></v-header>
-    <div class="mc border-1px">
-      <div class="mc-item">
+    <div class="tab border-1px">
+      <div class="tab-item">
         <a v-link="{path:'/business/goods'}">商品</a>
       </div>
-      <div class="mc-item">
+      <div class="tab-item">
         <a v-link="{path:'/business/ratings'}">评论</a>
       </div>
-      <div class="mc-item">
+      <div class="tab-item">
         <a v-link="{path:'/business/seller'}">商家</a>
       </div>
     </div>
@@ -51,14 +51,14 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "./common/stylus/mixin.styl"
 
-  .mc
+  .tab
     display: flex
     width: 100%
     height: 40px
     line-height: 40px
     // border-bottom: 1px solid rgba(7, 17, 27, 0.1)
     border-1px(rgba(7, 17, 27, 0.1))
-    .mc-item
+    .tab-item
       flex: 1
       text-align: center
       & > a

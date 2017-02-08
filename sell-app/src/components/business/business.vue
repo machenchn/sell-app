@@ -1,50 +1,31 @@
 <template>
-  <v-header :seller="seller"></v-header>
-  <div class="mc border-1px">
-      <div class="mc-item">
-        <a v-link="{path:'/business/goods'}">商品</a>
-      </div>
-      <div class="mc-item">
-        <a v-link="{path:'/business/ratings'}">评论</a>
-      </div>
-      <div class="mc-item">
-        <a v-link="{path:'/business/seller'}">商家</a>
-      </div>
-    </div>
-    <router-view :seller="seller" keep-alive></router-view>
-  </div>
-  <div class="goods">
-    <div class="menu-wrapper" v-el:menu-wrapper>
-      <ul>
-        <li v-for="item in goods" class="menu-item" :class="{'current':currentIndex===$index}"
-            @click="selectMenu($index,$event)">
-          <span class="text border-1px">
-            <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
-          </span>
-        </li>
-      </ul>
-    </div>
+  <div class="business" v-link="{path:'/business/goods'}">
     <div class="foods-wrapper" v-el:foods-wrapper>
       <ul>
-        <li v-for="item in goods" class="food-list food-list-hook">
-          <h1 class="title">{{item.name}}</h1>
+        <li class="food-list food-list-hook">
+          <h1 class="title">推荐商家</h1>
           <ul>
-            <li @click="selectFood(food,$event)" v-for="food in item.foods" class="food-item border-1px">
+            <li @click="selectFood(food,$event)" v-for="food in business" class="food-item border-1px">
               <div class="icon">
-                <img width="57" height="57" :src="food.icon">
+                <img width="57" height="57" :src="food.avatar">
               </div>
               <div class="content">
                 <h2 class="name">{{food.name}}</h2>
                 <p class="desc">{{food.description}}</p>
                 <div class="extra">
-                  <span class="count">月售{{food.sellCount}}份</span><span>好评率{{food.rating}}%</span>
+                  <star :size="24" :score="seller.score"></star>
+                  <div class="message">
+                    <span>{{food.foodScore}}</span>
+                    <span class="count">月售{{food.sellCount}}份</span>
+                  </div>
                 </div>
                 <div class="price">
-                  <span class="now">￥{{food.price}}</span><span class="old"
-                                                                v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                      <img src="decrease_4@2x.png" alt="" class="img">
+                      <span class="text">{{food.supports[0].description}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="food"></cartcontrol>
+                  <span class="icon-favorite" :class="{'active':favorite}"></span>
+                  <span class="text">{{favoriteText}}</span>
                 </div>
               </div>
             </li>
@@ -52,10 +33,7 @@
         </li>
       </ul>
     </div>
-    <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice"
-              :min-price="seller.minPrice"></shopcart>
   </div>
-  <food :food="selectedFood" v-ref:food></food>
 </template>
 
 <script type="text/ecmascript-6">
@@ -63,7 +41,7 @@
   import shopcart from 'components/shopcart/shopcart';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
   import food from 'components/food/food';
-  import header from 'components/header/header.vue';
+  import star from 'components/star/star';
 
   const ERR_OK = 0;
 
@@ -75,13 +53,16 @@
     },
     data() {
       return {
-        goods: [],
+        business: [],
         listHeight: [],
         scrollY: 0,
         selectedFood: {}
       };
     },
     computed: {
+      favoriteText() {
+        return this.favorite ? '已收藏' : '收藏';
+      },
       currentIndex() {
         for (let i = 0; i < this.listHeight.length; i++) {
           let height1 = this.listHeight[i];
@@ -94,7 +75,7 @@
       },
       selectFoods() {
         let foods = [];
-        this.goods.forEach((good) => {
+        this.business.forEach((good) => {
           good.foods.forEach((food) => {
             if (food.count) {
               foods.push(food);
@@ -107,10 +88,10 @@
     created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 
-      this.$http.get('/api/goods').then((response) => {
+      this.$http.get('/api/business').then((response) => {
         response = response.body;
         if (response.errno === ERR_OK) {
-          this.goods = response.data;
+          this.business = response.data;
           this.$nextTick(() => {
             this._initScroll();
             this._calculateHeight();
@@ -169,7 +150,7 @@
       shopcart,
       cartcontrol,
       food,
-      'v-header': header
+      star
     },
     events: {
       'cart.add'(target) {
@@ -182,55 +163,12 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixin.styl"
 
-  .goods
+  .business
     display: flex
     position: absolute
-    top: 174px
-    bottom: 46px
+    bottom: 60px
     width: 100%
     overflow: hidden
-    .menu-wrapper
-      flex: 0 0 80px
-      width: 80px
-      background: #f3f5f7
-      .menu-item
-        display: table
-        height: 54px
-        width: 56px
-        padding: 0 12px
-        line-height: 14px
-        &.current
-          position: relative
-          z-index: 10
-          margin-top: -1px
-          background: #fff
-          font-weight: 700
-          .text
-            border-none()
-        .icon
-          display: inline-block
-          vertical-align: top
-          width: 12px
-          height: 12px
-          margin-right: 2px
-          background-size: 12px 12px
-          background-repeat: no-repeat
-          &.decrease
-            bg-image('decrease_3')
-          &.discount
-            bg-image('discount_3')
-          &.guarantee
-            bg-image('guarantee_3')
-          &.invoice
-            bg-image('invoice_3')
-          &.special
-            bg-image('special_3')
-        .text
-          display: table-cell
-          width: 56px
-          vertical-align: middle
-          border-1px(rgba(7, 17, 27, 0.1))
-          font-size: 12px
     .foods-wrapper
       flex: 1
       .title
@@ -254,6 +192,9 @@
           margin-right: 10px
         .content
           flex: 1
+          .star
+            height: 12px
+            margin-bottom: 8px
           .name
             margin: 2px 0 8px 0
             height: 14px
@@ -266,23 +207,39 @@
             color: rgb(147, 153, 159)
           .desc
             line-height: 12px
-            margin-bottom: 8px
+            position: absolute
+            right: 84px
+            top: 25px
           .extra
             .count
               margin-right: 12px
+            .message
+              position: absolute;
+              left: 140px;
+              top: 26px;
           .price
             font-weight: 700
-            line-height: 24px
-            .now
-              margin-right: 8px
-              font-size: 14px
-              color: rgb(240, 20, 20)
-            .old
-              text-decoration: line-through
-              font-size: 10px
-              color: rgb(147, 153, 159)
+            line-height: 12px
+            .img
+              height: 12px
+              vertical-align: middle;
+            .text
+              font-size: 12px
+              vertical-align: middle;
           .cartcontrol-wrapper
             position: absolute
             right: 0
-            bottom: 12px
+            bottom: 30px
+            .icon-favorite
+              display: block
+              margin-bottom: 4px
+              line-height: 24px
+              font-size: 24px
+              color: #d4d6d9
+              &.active
+                color: rgb(240, 20, 20)
+            .text
+              line-height: 10px
+              font-size: 10px
+              color: rgb(77, 85, 93)
 </style>

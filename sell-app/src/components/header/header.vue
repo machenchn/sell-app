@@ -1,5 +1,8 @@
 <template>
   <div class="header">
+    <div class="back">
+      <i class="icon-arrow_lift" v-link="{path:'/'}"></i>
+    </div>
     <div class="content-wrapper">
       <div class="avatar">
         <img width="64" height="64" :src="seller.avatar">
@@ -103,6 +106,16 @@
     overflow: hidden
     color: #fff
     background: rgba(7, 17, 27, 0.5)
+    .back
+        position: absolute
+        top: 0px
+        right: 0
+        z-index: 99
+        .icon-arrow_lift
+          display: block
+          padding: 6px
+          font-size: 20px
+          color: #fff
     .content-wrapper
       position: relative
       padding: 24px 12px 18px 24px
