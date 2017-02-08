@@ -55,11 +55,11 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
-  import cartcontrol from 'components/cartcontrol/cartcontrol';
   import Vue from 'vue';
-  import split from 'components/split/split';
+  import {formatDate} from 'common/js/date';
+  import cartcontrol from 'components/cartcontrol/cartcontrol';
   import ratingselect from 'components/ratingselect/ratingselect';
-  import {formatDate} from 'common/js/data';
+  import split from 'components/split/split';
 
   const ALL = 2;
 
@@ -117,7 +117,7 @@
         }
       }
     },
-    event: {
+    events: {
       'ratingtype.select'(type) {
         this.selectType = type;
         this.$nextTick(() => {
@@ -139,8 +139,8 @@
     },
     components: {
       cartcontrol,
-      split,
-      ratingselect
+      ratingselect,
+      split
     }
   };
 </script>
@@ -181,6 +181,7 @@
           padding: 10px
           font-size: 20px
           color: #fff
+
     .content
       position: relative
       padding: 18px
@@ -290,6 +291,7 @@
               color: rgb(0, 160, 220)
             .icon-thumb_down
               color: rgb(147, 153, 159)
+
         .no-rating
           padding: 16px 0
           font-size: 12px

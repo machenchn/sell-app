@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import App from './App';
 import VueResource from 'vue-resource';
-import goods from './components/goods/goods';
-import seller from './components/seller/seller';
-import ratings from './components/ratings/ratings';
+import App from './App';
+import goods from 'components/goods/goods';
+import ratings from 'components/ratings/ratings';
+import seller from 'components/seller/seller';
 
 import 'common/stylus/index.styl';
 
@@ -18,17 +18,19 @@ let router = new VueRouter({
 });
 
 router.map({
+  '/': {
+    component: goods
+  },
   '/goods': {
     component: goods
   },
-  '/seller': {
-    component: seller
-  },
   '/ratings': {
     component: ratings
+  },
+  'seller': {
+    component: seller
   }
 });
 
 router.start(app, '#app');
-
-router.go('/goods');
+// router.go('/goods');
