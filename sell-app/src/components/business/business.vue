@@ -1,5 +1,5 @@
 <template>
-  <div class="business" v-link="{path:'/business/goods'}">
+  <div class="business" v-link="{path:'/shop/goods'}">
     <div class="foods-wrapper" v-el:foods-wrapper>
       <ul>
         <li class="food-list food-list-hook">

@@ -1,18 +1,4 @@
 <template>
-  <v-header :seller="seller"></v-header>
-  <div class="mc border-1px">
-      <div class="mc-item">
-        <a v-link="{path:'/business/goods'}">商品</a>
-      </div>
-      <div class="mc-item">
-        <a v-link="{path:'/business/ratings'}">评论</a>
-      </div>
-      <div class="mc-item">
-        <a v-link="{path:'/business/seller'}">商家</a>
-      </div>
-    </div>
-    <router-view :seller="seller" keep-alive></router-view>
-  </div>
   <div class="goods">
     <div class="menu-wrapper" v-el:menu-wrapper>
       <ul>

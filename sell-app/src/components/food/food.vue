@@ -153,7 +153,7 @@
     left: 0
     top: 0
     bottom: 48px
-    z-index: 30
+    z-index: 999
     width: 100%
     background: #fff
     &.move-transition

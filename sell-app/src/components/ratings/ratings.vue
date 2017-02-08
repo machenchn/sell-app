@@ -1,18 +1,4 @@
 <template>
-  <v-header :seller="seller"></v-header>
-  <div class="mc border-1px">
-      <div class="mc-item">
-        <a v-link="{path:'/business/goods'}">商品</a>
-      </div>
-      <div class="mc-item">
-        <a v-link="{path:'/business/ratings'}">评论</a>
-      </div>
-      <div class="mc-item">
-        <a v-link="{path:'/business/seller'}">商家</a>
-      </div>
-    </div>
-    <router-view :seller="seller" keep-alive></router-view>
-  </div>
   <div class="ratings" v-el:ratings>
     <div class="ratings-content">
       <div class="overview">
@@ -67,6 +53,8 @@
       </div>
     </div>
   </div>
+  <message style="
+    z-index: 9999"></message>
 </template>
 
 <script type="text/ecmascript-6">
@@ -76,6 +64,7 @@
   import ratingselect from 'components/ratingselect/ratingselect';
   import split from 'components/split/split';
   import header from 'components/header/header.vue';
+  import message from 'components/message/message';
 
   const ALL = 2;
   const ERR_OK = 0;
@@ -142,7 +131,8 @@
       star,
       split,
       ratingselect,
-      'v-header': header
+      'v-header': header,
+      message
     }
   };
 </script>
