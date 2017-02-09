@@ -54,8 +54,10 @@
       bottom: 0px
       display: flex
       width: 100%
-      height: 60px
-      line-height: 60px
+      height: 40px
+      line-height: 40px
+      background: #999
+      border-top: 1px solid
       .tab-item
         flex: 1
         text-align: center

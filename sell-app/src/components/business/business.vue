@@ -1,4 +1,9 @@
 <template>
+  <carousel :indicators="true" :auto="3000" class="pic">
+      <carousel-item><img height="164px;" src="0.jpg" alt=""></carousel-item>
+      <carousel-item><img height="164px;" src="1.png" alt=""></carousel-item>
+      <carousel-item><img height="164px;" src="2.jpg" alt=""></carousel-item>
+  </carousel>
   <div class="business" v-link="{path:'/shop/goods'}">
     <div class="foods-wrapper" v-el:foods-wrapper>
       <ul>
@@ -42,6 +47,7 @@
   import cartcontrol from 'components/cartcontrol/cartcontrol';
   import food from 'components/food/food';
   import star from 'components/star/star';
+  import { Carousel, CarouselItem } from 'vue-m-carousel';
 
   const ERR_OK = 0;
 
@@ -150,7 +156,9 @@
       shopcart,
       cartcontrol,
       food,
-      star
+      star,
+      Carousel,
+      CarouselItem
     },
     events: {
       'cart.add'(target) {
@@ -163,10 +171,13 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixin.styl"
 
+  .pic
+    position: absolute
+    top: 0px
   .business
     display: flex
     position: absolute
-    bottom: 60px
+    top: 160px
     width: 100%
     overflow: hidden
     .foods-wrapper
