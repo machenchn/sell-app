@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+import '../mytheme/index.less';
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-default/index.css';
 // import App from './App';
 import Home from './Home';
 import goods from 'components/goods/goods';
@@ -15,6 +20,7 @@ import 'common/stylus/index.styl';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(iView);
 
 // let app = Vue.extend(App);
 let home = Vue.extend(Home);
