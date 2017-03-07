@@ -18,6 +18,9 @@
         type: Object
       }
     },
+    created() {
+      console.log(this.food.name);
+    },
     methods: {
       addCart(event) {
         if (!event._constructed) {

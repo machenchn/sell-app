@@ -39,6 +39,7 @@
       </ul>
     </div>
   </div>
+  <navmain></navmain>
 </template>
 
 <script type="text/ecmascript-6">
@@ -47,6 +48,7 @@
   import cartcontrol from 'components/cartcontrol/cartcontrol';
   import food from 'components/food/food';
   import star from 'components/star/star';
+  import navmain from 'components/navmain/navmain';
   import { Carousel, CarouselItem } from 'vue-m-carousel';
 
   const ERR_OK = 0;
@@ -158,7 +160,8 @@
       food,
       star,
       Carousel,
-      CarouselItem
+      CarouselItem,
+      navmain
     },
     events: {
       'cart.add'(target) {

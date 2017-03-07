@@ -182,7 +182,7 @@
       .menu-item
         display: table
         height: 54px
-        width: 56px
+        width: 80px
         padding: 0 12px
         line-height: 14px
         &.current

@@ -53,8 +53,6 @@
       </div>
     </div>
   </div>
-  <message style="
-    z-index: 9999"></message>
 </template>
 
 <script type="text/ecmascript-6">

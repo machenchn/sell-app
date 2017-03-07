@@ -1,8 +1,15 @@
 <template>
-   <div class="mian-body">
-    <router-view :seller="seller" keep-alive></router-view>
+    <div class="tab border-1px">
+      <div class="tab-item">
+        <a v-link="{path:'/business'}">外卖</a>
+      </div>
+      <div class="tab-item">
+        <a v-link="{path:'/orders'}">订单</a>
+      </div>
+      <div class="tab-item">
+        <a v-link="{path:'/mine'}">我的</a>
+      </div>
     </div>
-  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -35,7 +42,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "./common/stylus/mixin.styl"
+  @import "../../common/stylus/mixin.styl"
   .mian-body
     width: 100%
     height: 100%
@@ -46,8 +53,9 @@
       width: 100%
       height: 40px
       line-height: 40px
-      background: #999
-      border-top: 1px solid
+      background: #fff;
+      z-index: 999
+      box-shadow:-5px -10px 25px rgba(0,0,0,0.1)
       .tab-item
         flex: 1
         text-align: center

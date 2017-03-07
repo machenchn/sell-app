@@ -37,6 +37,7 @@
       </div>
     </div>
   </div>
+  <navmain></navmain>
 </template>
 
 <script type="text/ecmascript-6">
@@ -46,6 +47,7 @@
   import split from 'components/split/split';
   import header from 'components/header/header.vue';
   import message from 'components/message/message';
+  import navmain from 'components/navmain/navmain';
 
   export default {
     props: {
@@ -118,7 +120,8 @@
       star,
       split,
       'v-header': header,
-      message
+      message,
+      navmain
     }
   };
 </script>
