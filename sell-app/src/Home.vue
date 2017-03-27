@@ -1,6 +1,8 @@
 <template>
    <div class="mian-body">
-    <router-view :seller="seller" keep-alive></router-view>
+    <transition name="router-fade" mode="out-in">
+      <router-view :seller="seller" keep-alive></router-view>
+    </transition>
     </div>
   </div>
 </template>
@@ -39,6 +41,10 @@
   .mian-body
     width: 100%
     height: 100%
+    .router-fade-enter-active, .router-fade-leave-active
+	  	transition: opacity .3s
+    .router-fade-enter, .router-fade-leave-active
+	  	opacity: 0
     .tab
       position: absolute
       bottom: 0px
