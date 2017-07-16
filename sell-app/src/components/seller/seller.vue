@@ -1,3 +1,6 @@
+<!--
+    商家信息
+!-->
 <template>
   <div class="seller" v-el:seller>
     <div class="seller-content">

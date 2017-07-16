@@ -1,3 +1,6 @@
+<!--
+    购物车
+!-->
 <template>
   <div class="shopcart">
     <div class="content" @click="toggleList">
@@ -231,7 +234,7 @@
     position: fixed
     left: 0
     bottom: 0
-    z-index: 50
+    z-index: 999
     width: 100%
     height: 48px
     .content

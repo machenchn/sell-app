@@ -1,3 +1,6 @@
+<!--
+    评论选择器
+!-->
 <template>
   <div class="ratingselect">
     <div class="rating-type border-1px">

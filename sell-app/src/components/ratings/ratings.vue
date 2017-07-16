@@ -1,3 +1,6 @@
+<!--
+    商家评论
+!-->
 <template>
   <div class="ratings" v-el:ratings>
     <div class="ratings-content">
